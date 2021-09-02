@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { Statistics } from 'Statistics/Statistics';
+import { Statistics } from 'components/Statistics/Statistics';
 import s from './Statistics.module.css';
 
 export const StatisticsList = ({ title, stats }) => {
   return (
     <section className={s.statistics}>
-      <h2 className={s.title}>{title}</h2>
-
+      {title && <h2 className={s.title}>{title}</h2>}
       <ul className={s.statsList}>
         {stats.map(({ id, label, percentage }) => (
           <Statistics key={id} label={label} percentage={percentage} />
@@ -17,6 +16,7 @@ export const StatisticsList = ({ title, stats }) => {
 };
 
 StatisticsList.propTypes = {
+  title: PropTypes.string,
   stats: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
